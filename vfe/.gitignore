@@ -1,0 +1,13 @@
+# Ignore below files/folders
+ext_frames*
+__pycache__
+*.csv
+*.png
+out*
+runs*
+frame_100fps
+video_*
+*.scp
+test*
+train*
+tr_imgs
