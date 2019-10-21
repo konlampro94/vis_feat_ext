@@ -71,53 +71,7 @@ class VFE(nn.Module):
         return res
 
         
-"""Convolutional Autoencoder VFE"""
-class Conv_Encoder(nn.Module):
 
-    def __init__(self, width, height):
-        super(Conv_Encoder, self).__init__()
-        self.lin1 = nn.Linear(width * height, 1000)
-        self.relu = nn.ReLU()
-        self.lin2 = nn.Linear(1000, 500)
-        self.lin3 = nn.Linear(500, 50)
-
-    def forward(self, x):
-        x1 = self.relu(self.lin1(x))
-        x2 = self.relu(self.lin2(x1))
-        #x3 = self.lin3(x2)
-        x3 = self.relu(self.lin3(x2))
-        return x3
-
-
-class Conv_Decoder(nn.Module):
-
-    def __init__(self, width, height):
-        super(Conv_Decoder, self).__init__()
-        self.lin4 = nn.Linear(50, 500)
-        self.lin5 = nn.Linear(500, 1000)
-        self.lin6 = nn.Linear(1000, width * height)
-        self.relu = nn.ReLU()
-        self.tanh = nn.Tanh()
-
-    def forward(self, x):
-        x4 = self.relu(self.lin4(x))
-        x5 = self.relu(self.lin5(x4))
-        x6 = self.lin6(x5)
-        x7 = self.tanh(x6)
-        return x7 
-
-
-class Conv_VFE(nn.Module):
-   
-    def __init__(self, width, height):
-        super(Conv_VFE, self).__init__()
-        self.encoder = Conv_Encoder(width, height)
-        self.decoder = Conv_Decoder(width, height)
-
-    def forward(self, x):
-        self.lant_vec = self.encoder(x)
-        res = self.decoder(self.lant_vec)
-        return res
 
 
 #"""
